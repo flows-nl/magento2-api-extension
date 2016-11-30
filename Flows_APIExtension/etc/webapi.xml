@@ -7,6 +7,14 @@
 -->
 <routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Webapi:etc/webapi.xsd">
+
+    <route url="/V1/flows/version" method="GET">
+        <service class="Magento\CatalogRule\Api\CatalogRuleRepositoryInterface" method="get"/>
+        <resources>
+            <resource ref="Magento_CatalogRule::quote"/>
+        </resources>
+    </route>
+
     <!-- Sale Rule CRUD -->
     <route url="/V1/flows/catalogRules/:ruleId" method="GET">
         <service class="Magento\CatalogRule\Api\CatalogRuleRepositoryInterface" method="get"/>
@@ -20,19 +28,19 @@
             <resource ref="Magento_CatalogRule::quote"/>
         </resources>
     </route> -->
-     <route url="/V1/catalogRules" method="POST">
+     <route url="/V1/flows/catalogRules" method="POST">
         <service class="Magento\CatalogRule\Api\CatalogRuleRepositoryInterface" method="save"/>
         <resources>
             <resource ref="Magento_CatalogRule::quote"/>
         </resources>
     </route>
-    <route url="/V1/catalogRules/:ruleId" method="PUT">
+    <route url="/V1/flows/catalogRules/:ruleId" method="PUT">
         <service class="Magento\CatalogRule\Api\CatalogRuleRepositoryInterface" method="save"/>
         <resources>
             <resource ref="Magento_CatalogRule::quote"/>
         </resources>
     </route>
-    <route url="/V1/catalogRules/:ruleId" method="DELETE">
+    <route url="/V1/flows/catalogRules/:ruleId" method="DELETE">
         <service class="Magento\CatalogRule\Api\CatalogRuleRepositoryInterface" method="deleteById"/>
         <resources>
             <resource ref="Magento_CatalogRule::quote"/>
