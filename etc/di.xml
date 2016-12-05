@@ -2,4 +2,5 @@
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../lib/internal/Magento/Framework/ObjectManager/etc/config.xsd">
     <preference for="Flows\ApiExtension\Api\VersionInterface" type="Flows\ApiExtension\Model\Version" />
     <preference for="Flows\ApiExtension\Api\CatalogRuleRepositoryInterface" type="Flows\ApiExtension\Model\CatalogRuleRepository" />
+    <preference for="Flows\ApiExtension\Api\Data\ExtendedCatalogRuleInterface" type="Flows\ApiExtension\Model\ExtendedCatalogRule" />
 </config>
