@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+
+<routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Webapi:etc/webapi.xsd">
+
+    <!-- Get API Extension version -->
+    <route url="/V1/flows/version" method="GET">
+        <service class="Flows\ApiExtension\Api\VersionInterface" method="getVersion"/>
+        <resources>
+            <resource ref="self"/>
+        </resources>
+    </route>
+
+    <!-- Catalog Rule CRUD -->
+    <route url="/V1/flows/catalogRules/:ruleId" method="GET">
+        <service class="Flows\ApiExtension\Api\CatalogRuleRepositoryInterface" method="getExtended"/>
+        <resources>
+            <resource ref="Magento_CatalogRule::quote"/>
+        </resources>
+    </route>
+    <route url="/V1/flows/catalogRules" method="GET">
+        <service class="Flows\ApiExtension\Api\CatalogRuleRepositoryInterface" method="getList"/>
+        <resources>
+            <resource ref="Magento_CatalogRule::quote"/>
+        </resources>
+    </route>
+     <route url="/V1/flows/catalogRules" method="POST">
+        <service class="Flows\ApiExtension\Api\CatalogRuleRepositoryInterface" method="saveExtended"/>
+        <resources>
+            <resource ref="Magento_CatalogRule::quote"/>
+        </resources>
+    </route>
+    <route url="/V1/flows/catalogRules/:ruleId" method="PUT">
+        <service class="Flows\ApiExtension\Api\CatalogRuleRepositoryInterface" method="saveExtended"/>
+        <resources>
+            <resource ref="Magento_CatalogRule::quote"/>
+        </resources>
+    </route>
+    <route url="/V1/flows/catalogRules/:ruleId" method="DELETE">
+        <service class="Flows\ApiExtension\Api\CatalogRuleRepositoryInterface" method="deleteById"/>
+        <resources>
+            <resource ref="Magento_CatalogRule::quote"/>
+        </resources>
+    </route>
+</routes>
