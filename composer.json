@@ -1,8 +1,8 @@
 {
-  "name": "flows-nl/magento2-api-extension",
+  "name": "flows/magento2-api-extension",
   "description": "A Magento 2 module that adds functionality to the Magento API",
   "type": "magento2-module",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "license": [
     "MIT"
   ],
