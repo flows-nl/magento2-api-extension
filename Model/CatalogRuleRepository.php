@@ -3,21 +3,36 @@
 namespace Flows\ApiExtension\Model;
 
 use Flows\ApiExtension\Api\CatalogRuleRepositoryInterface;
-use Flows\ApiExtension\Api\Data\ExtendedCatalogRuleInterface;
 use Magento\CatalogRule\Model\ResourceModel\Rule\Collection;
+use Magento\CatalogRule\Model\RuleFactory;
 use Magento\Framework\App\ObjectManager;
-use Magento\Framework\Exception\CouldNotSaveException;
-use Magento\Framework\Exception\ValidatorException;
 
 class CatalogRuleRepository extends \Magento\CatalogRule\Model\CatalogRuleRepository implements CatalogRuleRepositoryInterface
 {
+    /**
+     * @var \Magento\Framework\ObjectManagerInterface
+     */
+    protected $objectManager;
+
+    /**
+     * @param \Magento\CatalogRule\Model\ResourceModel\Rule $ruleResource
+     * @param RuleFactory $ruleFactory
+     */
+    public function __construct(
+        \Magento\CatalogRule\Model\ResourceModel\Rule $ruleResource,
+        \Magento\CatalogRule\Model\RuleFactory $ruleFactory,
+        \Magento\Framework\ObjectManagerInterface $objectManager
+    ) {
+        parent::__construct($ruleResource, $ruleFactory);
+        $this->objectManager = $objectManager;
+    }
+
     /**
      * {@inheritdoc}
      */
     public function getList()
     {
-        $objectManager = ObjectManager::getInstance();
-        $catalogPriceRule = $objectManager->get('Magento\CatalogRule\Model\Rule');
+        $catalogPriceRule = $this->objectManager->get('Magento\CatalogRule\Model\Rule');
         /** @var Collection $collection */
         $collection = $catalogPriceRule->getCollection();
         $collection->load();
@@ -55,6 +70,17 @@ class CatalogRuleRepository extends \Magento\CatalogRule\Model\CatalogRuleReposi
     public function deleteById($ruleId)
     {
         return parent::deleteById($ruleId);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function applyAll()
+    {
+        /** @var \Magento\CatalogRule\Model\Rule\Job $catalogPriceRuleJob */
+        $catalogPriceRuleJob = $this->objectManager->get('Magento\CatalogRule\Model\Rule\Job');
+        $catalogPriceRuleJob->applyAll();
+        return true;
     }
 
 }

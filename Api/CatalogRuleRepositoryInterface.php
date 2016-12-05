@@ -45,4 +45,9 @@ interface CatalogRuleRepositoryInterface
      * @throws \Magento\Framework\Exception\CouldNotDeleteException
      */
     public function deleteById($ruleId);
+
+    /**
+     * @return bool
+     */
+    public function applyAll();
 }

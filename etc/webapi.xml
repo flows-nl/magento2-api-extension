@@ -42,4 +42,10 @@
             <resource ref="Magento_CatalogRule::quote"/>
         </resources>
     </route>
+    <route url="/V1/flows/catalogRules/apply" method="GET">
+        <service class="Flows\ApiExtension\Api\CatalogRuleRepositoryInterface" method="applyAll"/>
+        <resources>
+            <resource ref="Magento_CatalogRule::quote"/>
+        </resources>
+    </route>
 </routes>
