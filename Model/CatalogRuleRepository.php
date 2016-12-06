@@ -4,8 +4,6 @@ namespace Flows\ApiExtension\Model;
 
 use Flows\ApiExtension\Api\CatalogRuleRepositoryInterface;
 use Magento\CatalogRule\Model\ResourceModel\Rule\Collection;
-use Magento\CatalogRule\Model\RuleFactory;
-use Magento\Framework\App\ObjectManager;
 
 class CatalogRuleRepository extends \Magento\CatalogRule\Model\CatalogRuleRepository implements CatalogRuleRepositoryInterface
 {
@@ -16,7 +14,8 @@ class CatalogRuleRepository extends \Magento\CatalogRule\Model\CatalogRuleReposi
 
     /**
      * @param \Magento\CatalogRule\Model\ResourceModel\Rule $ruleResource
-     * @param RuleFactory $ruleFactory
+     * @param \Magento\CatalogRule\Model\RuleFactory        $ruleFactory
+     * @param \Magento\Framework\ObjectManagerInterface     $objectManager
      */
     public function __construct(
         \Magento\CatalogRule\Model\ResourceModel\Rule $ruleResource,
@@ -80,7 +79,7 @@ class CatalogRuleRepository extends \Magento\CatalogRule\Model\CatalogRuleReposi
         /** @var \Magento\CatalogRule\Model\Rule\Job $catalogPriceRuleJob */
         $catalogPriceRuleJob = $this->objectManager->get('Magento\CatalogRule\Model\Rule\Job');
         $catalogPriceRuleJob->applyAll();
+
         return true;
     }
-
 }
